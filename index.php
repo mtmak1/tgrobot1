@@ -24,6 +24,7 @@ else{
     
     $inline_button1 = array("text"=>"Главный сайт","url"=>"http://google.com");
     $inline_button2 = array("text"=>"Действие","callback_data"=>'/plz');
+    $inline_button3 = array("text"=>"Отобразить", "callback_data"=>'/show');
     $inline_keyboard = [[$inline_button1,$inline_button2]];
     $keyboard=array("inline_keyboard"=>$inline_keyboard);
     $replyMarkup = json_encode($keyboard); 
@@ -33,16 +34,24 @@ else{
 
 switch($data){
     case '/plz':
-        $inline_button1 = array("text"=>"Google url","url"=>"http://google.com");
-        $inline_button2 = array("text"=>"work plz","callback_data"=>'/plz');
-        $inline_keyboard = [[$inline_button1,$inline_button2]];
-        $keyboard=array("inline_keyboard"=>$inline_keyboard);
-        $replyMarkup = json_encode($keyboard); 
-        file_get_contents($path."/sendmessage?chat_id=".$chat_id_in."&text=Here's the weather pu ".'&text='."key".'&reply_markup=' . $replyMarkup);
+        
+        file_get_contents($path."/sendmessage?chat_id=".$chat_id_in."&text=Here's the weather pu ".'&text='."key".'&reply_markup=' . showbuts());
+    break;
+    case '/show':
+        
+        file_get_contents($path."/sendmessage?chat_id=".$chat_id_in."&text=Here's the weather pu ".'&text='."key".'&reply_markup=' . showbuts());
     break;
 }
 
-
+function showbuts(){
+    $inline_button1 = array("text"=>"Google url","url"=>"http://google.com");
+    $inline_button2 = array("text"=>"work plz","callback_data"=>'/plz');
+    $inline_button3 = array("text"=>"Отобразить", "callback_data"=>'/show');
+    $inline_keyboard = [[$inline_button1,$inline_button2]];
+    $keyboard=array("inline_keyboard"=>$inline_keyboard);
+    $replyMarkup = json_encode($keyboard); 
+    return $replyMarkup;
+}
 
 
 function send($path, $chatid, $message, $buttons){
