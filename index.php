@@ -14,7 +14,7 @@ $chat_id_in = $callback_query['message']['chat']['id'];
 
 function gettxt($message){
     $bdw = fopen('info.txt', 'w');
-    fwrite($bdw, "message");
+    fwrite($bdw, "$message");
     fclose($bdw);
 }
 
