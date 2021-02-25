@@ -47,7 +47,7 @@ function showbuts(){
     $inline_button1 = array("text"=>"Google url","url"=>"http://google.com");
     $inline_button2 = array("text"=>"work plz","callback_data"=>'/plz');
     $inline_button3 = array("text"=>"Отобразить", "callback_data"=>'/show');
-    $inline_keyboard = [[$inline_button1,$inline_button2]];
+    $inline_keyboard = [[$inline_button1,$inline_button2,$inline_button3]];
     $keyboard=array("inline_keyboard"=>$inline_keyboard);
     $replyMarkup = json_encode($keyboard); 
     return $replyMarkup;
