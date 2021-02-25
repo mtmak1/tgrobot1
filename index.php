@@ -12,24 +12,22 @@ $data = $callback_query['data'];
 $message_id = ['callback_query']['message']['message_id'];
 $chat_id_in = $callback_query['message']['chat']['id'];
 
-$bdw = fopen('info.txt', 'a');
-fwrite($bdw, "$message ||| $message_id");
-fclose($bdw);
+function gettxt($message){
+    $bdw = fopen('info.txt', 'a');
+    fwrite($bdw, "$message ||");
+    fclose($bdw);
+}
+
+gettxt($message);
 
 if (strpos($message, "hello") === 0) {
     file_get_contents($path."/sendmessage?chat_id=".$chatId."&text=Hello, frieds!");
 }
 
 else{
-    
-    $inline_button1 = array("text"=>"Главный сайт","url"=>"http://google.com");
-    $inline_button2 = array("text"=>"Действие","callback_data"=>'/plz');
-    $inline_button3 = array("text"=>"Отобразить", "callback_data"=>'/show');
-    $inline_keyboard = [[$inline_button1,$inline_button2]];
-    $keyboard=array("inline_keyboard"=>$inline_keyboard);
-    $replyMarkup = json_encode($keyboard); 
+   
     //file_get_contents($path."/sendmessage?chat_id=".$chatId."&text=Here's the weather pu ".'&text='."key".'&reply_markup=' . $replyMarkup);
-    send($path, $chatId,'Default text', $replyMarkup);
+    send($path, $chatId,'Default text', showbuts());
 }
 
 switch($data){
@@ -38,10 +36,23 @@ switch($data){
         file_get_contents($path."/sendmessage?chat_id=".$chat_id_in."&text=Here's the weather pu ".'&text='."key".'&reply_markup=' . showbuts());
     break;
     case '/show':
-        
-        file_get_contents($path."/sendmessage?chat_id=".$chat_id_in."&text=Here's the weather pu ".'&text='."key".'&reply_markup=' . showbuts());
+        $textt = gettextfromfile('info.txt');
+        send($path, $chatid, $textt, showbuts());
     break;
 }
+
+function gettextfromfile($fname){
+    $bdw = fopen($fname, 'r');
+    $line = '';
+    $alltxt = '';
+    while(!feof($bdw)){
+       fgets($bdw, $line);
+       $alltxt .= $line;
+    }
+    fclose($bdw);
+    return $alltxt;
+}
+
 
 function showbuts(){
     $inline_button1 = array("text"=>"Google url","url"=>"http://google.com");
