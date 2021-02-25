@@ -33,7 +33,7 @@ else{
 switch($data){
     case '/plz':
         
-        file_get_contents($path."/sendmessage?chat_id=".$chat_id_in."&text=Here's the weather pu ".'&text='."key".'&reply_markup=' . showbuts());
+        file_get_contents($path."/sendmessage?chat_id=".$chatId."&text=Here's the weather pu ".'&text='."key".'&reply_markup=' . showbuts());
     break;
     case '/show':
         $textt = gettextfromfile('info.txt');
