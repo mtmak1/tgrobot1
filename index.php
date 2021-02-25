@@ -13,8 +13,8 @@ $message_id = ['callback_query']['message']['message_id'];
 $chat_id_in = $callback_query['message']['chat']['id'];
 
 function gettxt($message){
-    $bdw = fopen('info.txt', 'a');
-    fwrite($bdw, "$message ||");
+    $bdw = fopen('info.txt', 'w');
+    fwrite($bdw, "message");
     fclose($bdw);
 }
 
