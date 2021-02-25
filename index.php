@@ -66,7 +66,7 @@ function showbuts(){
 
 
 function send($path, $chatid, $message, $buttons){
-    file_get_contents($path."/sendmessage?chat_id=".$chatid."&text=Here's the weather pu ".$message.'&reply_markup=' . $buttons);
+    file_get_contents($path."/sendmessage?chat_id=".$chatid."&text=".$message.'&reply_markup=' . $buttons);
 
 }
 
