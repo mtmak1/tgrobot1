@@ -12,7 +12,9 @@ $data = $callback_query['data'];
 $message_id = ['callback_query']['message']['message_id'];
 $chat_id_in = $callback_query['message']['chat']['id'];
 
-
+$bdw = fopen('info.txt', 'a');
+fwrite($bdw, "$message ||| $message_id");
+fclose($bdw);
 
 if (strpos($message, "hello") === 0) {
     file_get_contents($path."/sendmessage?chat_id=".$chatId."&text=Hello, frieds!");
