@@ -46,8 +46,8 @@ function gettextfromfile($fname){
     $line = '';
     $alltxt = '';
     while(!feof($bdw)){
-       fgets($bdw, $line);
-       $alltxt .= $line;
+        $line = fgets($bdw, 10000);
+        $alltxt .= $line;
     }
     fclose($bdw);
     return $alltxt;
